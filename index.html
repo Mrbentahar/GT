@@ -1,58 +1,86 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco-CRM | إدارة النفايات الذكية - React Demo</title>
-    
-    <!-- 1. تحميل Tailwind CSS JIT CDN -->
-    <!-- هذا السكريبت يتولى مهمة البحث عن الكلاسات في الكود وتجميع CSS آلياً -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 2. تهيئة إعدادات Tailwind (لتحديد الألوان والخطوط) -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // تفعيل وضع الظلام عبر الكلاس 'dark' على الـ <html>
-            theme: {
-                extend: {
-                    colors: {
-                        'green': {
-                            50: '#F1F7F1',
-                            600: '#1B5E20', // الأخضر الأساسي
-                            700: '#154B1A',
-                            900: '#0C2D0E',
-                            950: '#081E09',
-                        },
-                        'red': {
-                            500: '#EF4444',
-                        },
-                        'yellow': {
-                            400: '#FACC15',
-                        }
-                    }
-                }
-            }
+const _e = {
+    ar: {
+        nav: { home: "الرئيسية", solution: "الحل", contact: "تواصل", langToggle: "English" },
+        hero: {
+            title: "إدارة نفايات ذكية... بدون مكالمات ولا فوضى",
+            subtitle: "نظام CRM مدعوم بالذكاء الاصطناعي يستقبل طلبات جمع النفايات 24/7.",
+            cta: "💬 تحدث معنا الآن لطلب الخدمة",
+            cta2: "🌐 شاهد النظام بالتفصيل",
+        },
+        pain: {
+            title: "هل تعاني من تحديات الإدارة التقليدية؟",
+            cards: [
+                { icon: "PhoneOff", title: "مكالمات لا تتوقف", desc: "فريق خدمة العملاء منهك بالردود المتكررة." },
+                { icon: "MapPinOff", title: "طلبات تضيع وتُنسى", desc: "فقدان طلبات الجمع بسبب التسجيل اليدوي أو سوء التواصل." },
+                { icon: "Clock", title: "رد متأخر وغير احترافي", desc: "تأخر الرد على العملاء خارج أوقات العمل الرسمية." },
+                { icon: "Frown", title: "عملاء غير راضين", desc: "عدم القدرة على تلبية الطلبات بسرعة وكفاءة." },
+            ],
+        },
+        solution: {
+            title: "الحل: نظام Eco-CRM ذكي متكامل",
+            cards: [
+                { icon: "Bot", title: "وكيل آلي 24/7", desc: "روبوت محادثة مدعوم بالـ AI يستقبل الطلبات ويؤكدها." },
+                { icon: "Settings", title: "أتمتة الطلبات", desc: "تحويل المحادثة المسجلة مباشرة إلى مهمة مُجدولة في نظام n8n." },
+                { icon: "Globe", title: "واجهة احترافية", desc: "موقع هبوط عصري يعكس صورة مؤسسية متقدمة لشركتكم." },
+            ],
+        },
+        steps: {
+            title: "كيف يعمل نظامنا؟ (3 خطوات بسيطة)",
+            steps: [
+                { num: "1", title: "دخول العميل", desc: "يدخل العميل إلى موقعكم ويضغط على زر 'تحدث معنا'." },
+                { num: "2", title: "التحدث مع البوت", desc: "يرد البوت فوراً ويسجل نوع وموقع وزمن طلب الجمع." },
+                { num: "3", "title": "التسجيل الآلي", desc: "يتم تحويل المحادثة إلى طلب مؤكد ومُجدول في نظامكم." },
+            ]
+        },
+        finalCTA: {
+            title: "هل أنت جاهز لنظام عمل ذكي ومؤتمت؟",
+            subtitle: "توقف عن هدر الوقت والمال في المكالمات. اطلب نظام Eco-CRM الآن لبدء التحول الرقمي.",
+            cta: "🚀 اطلب الخدمة الآن وابدأ الأتمتة",
+        },
+        footer: {
+            copyright: "© 2026 Eco-CRM. جميع الحقوق محفوظة.",
         }
-    </script>
-    
-    <!-- 3. تحميل خطوط Google (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- 4. تحميل مكتبات React و ReactDOM (إصدار الإنتاج لـ CDN) -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-    <!-- 5. تحميل مكتبة الأيقونات (Lucide Icons) -->
-    <!-- تُحمّل Lucide كـ Global Object لكي يتعرف عليها كود app.js -->
-    <script crossorigin src="https://unpkg.com/lucide-react@0.320.0/dist/umd/lucide-react.min.js"></script>
-
-</head>
-<body class="font-inter transition-colors duration-300">
-    <!-- حاوية الجذر حيث سيتم عرض تطبيق React بالكامل -->
-    <div id="root"></div>
-
-    <!-- 6. تحميل كود التطبيق المجمع (app.js) -->
-    <!-- يجب أن يُحمّل في النهاية بعد تحميل كل المكتبات الأخرى -->
-    <script src="./app.js"></script>
-</body>
-</html>
+    },
+    en: {
+        nav: { home: "Home", solution: "Solution", contact: "Contact", langToggle: "العربية" },
+        hero: {
+            title: "Smart Waste Management... No Calls, No Clutter",
+            subtitle: "An AI-powered CRM system receives waste collection requests 24/7 automatically.",
+            cta: "💬 Chat with Us to Start",
+            cta2: "🌐 View System Details",
+        },
+        pain: {
+            title: "Are You Suffering from Traditional Management Challenges?",
+            cards: [
+                { icon: "PhoneOff", title: "Non-Stop Calls", desc: "The customer service team is exhausted by repetitive requests." },
+                { icon: "MapPinOff", title: "Lost Requests", desc: "Manual entry and miscommunication lead to forgotten collection requests." },
+                { icon: "Clock", title: "Slow, Unprofessional Response", desc: "Delayed responses outside working hours degrade service quality." },
+                { icon: "Frown", title: "Dissatisfied Customers", desc: "Inability to fulfill requests quickly and efficiently." },
+            ],
+        },
+        solution: {
+            title: "The Solution: A Fully Integrated Smart Eco-CRM System",
+            cards: [
+                { icon: "Bot", title: "24/7 Automated Agent", desc: "An AI-powered chatbot confirms and receives all requests automatically." },
+                { icon: "Settings", title: "Request Automation", desc: "Automatically converts chat logs into scheduled tasks using an n8n workflow." },
+                { icon: "Globe", title: "Professional Interface", desc: "A modern landing page reflecting an advanced corporate image." },
+            ],
+        },
+        steps: {
+            title: "How Does Our System Work? (3 Simple Steps)",
+            steps: [
+                { num: "1", title: "Customer Access", desc: "The customer visits your site and clicks the 'Chat with Us' button." },
+                { num: "2", title: "Chatbot Interaction", desc: "The bot responds immediately and logs the type, location, and time of the request." },
+                { num: "3", "title": "Automated Scheduling", desc: "The conversation is automatically converted into a confirmed and scheduled task in your system." },
+            ]
+        },
+        finalCTA: {
+            title: "Ready for a Smart and Automated Workflow?",
+            subtitle: "Stop wasting time and money on calls. Order the Eco-CRM system now to begin your digital transformation.",
+            cta: "🚀 Request Service Now and Start Automating",
+        },
+        footer: {
+            copyright: "© 2026 Eco-CRM. All Rights Reserved.",
+        }
+    },
+};
